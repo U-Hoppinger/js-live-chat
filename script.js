@@ -10,6 +10,10 @@ if (!myName) {
 sendButton.addEventListener("click", async () => {
   let text = message.value;
   let p = document.createElement("p");
+  let textValue = text.value.trim();
+  if (!textValue) {
+    return;
+  }
   p.textContent = `${myName}: ${text}`;
   p.classList.add("message");
   p.classList.add("my-message");
@@ -37,6 +41,9 @@ async function loadMessages() {
   );
   let dataText = await response.json();
   let containerMessages = document.querySelector(".chat-box");
+  if (dataText.length === containerMessages.children.length) {
+    return;
+  } // запрещает обновляться если данные на экране совпадают с данными в базе
   containerMessages.innerHTML = "";
   for (let item of dataText) {
     let p = document.createElement("p");
@@ -56,3 +63,6 @@ loadMessages();
 message.addEventListener("keydown", (event) => {
   if (event.key === "Enter") sendButton.click();
 }); // отправка по интеру
+
+setInterval(loadMessages, 3000); // каждые 3 секунды принудительное обновление данных
+text.innerHTML;

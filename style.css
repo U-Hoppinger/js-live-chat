@@ -1,12 +1,20 @@
+body {
+    display: grid;
+    place-items: center;
+    background-color: #676767;
+}
+
 .chat-box {
     display: flex;
     flex-direction: column; /* Сообщения выстраиваются сверху вниз */
     gap: 10px; /* Расстояние между сообщениями */
     width: 400px;
-    height: 500px;
-    border: 2px solid #ccc;
+    height: 700px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
     padding: 15px;
     overflow-y: auto; /* Появится скролл, когда сообщений станет много */
+    background-color: #d7d7d7;
 }
 
 /* Базовый дизайн пузыря для любого сообщения */
@@ -21,11 +29,19 @@
 /* Модификатор для твоих сообщений (зеленые, справа) */
 .my-message {
     align-self: flex-end; /* Прижать к правому краю */
-    background-color: #dcf8c6;
+    background-color: #c6ecf8;
 }
 
 /* Модификатор для чужих сообщений (серые, слева) */
 .other-message {
     align-self: flex-start; /* Прижать к левому краю */
     background-color: #f1f0f0;
+}
+.decoration_send_box {
+    margin-top: 5px;
+}
+.message_input, .btn_to_send {
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
 }
