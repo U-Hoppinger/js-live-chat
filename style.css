@@ -1,0 +1,31 @@
+.chat-box {
+    display: flex;
+    flex-direction: column; /* Сообщения выстраиваются сверху вниз */
+    gap: 10px; /* Расстояние между сообщениями */
+    width: 400px;
+    height: 500px;
+    border: 2px solid #ccc;
+    padding: 15px;
+    overflow-y: auto; /* Появится скролл, когда сообщений станет много */
+}
+
+/* Базовый дизайн пузыря для любого сообщения */
+.message {
+    max-width: 70%;
+    margin: 0;
+    border-radius: 15px;
+    padding: 10px 15px;
+    font-family: sans-serif;
+}
+
+/* Модификатор для твоих сообщений (зеленые, справа) */
+.my-message {
+    align-self: flex-end; /* Прижать к правому краю */
+    background-color: #dcf8c6;
+}
+
+/* Модификатор для чужих сообщений (серые, слева) */
+.other-message {
+    align-self: flex-start; /* Прижать к левому краю */
+    background-color: #f1f0f0;
+}
