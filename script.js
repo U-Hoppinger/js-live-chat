@@ -75,5 +75,4 @@ message.addEventListener("keydown", (event) => {
   if (event.key === "Enter") sendButton.click();
 }); // отправка по интеру
 
-setInterval(loadMessages, 3000); // каждые 3 секунды принудительное обновление данных
-text.innerHTML;
+setInterval(loadMessages, 1000); // каждые 3 секунды принудительное обновление данных
