@@ -7,31 +7,42 @@ if (!myName) {
   localStorage.setItem("chatUsername", myName);
 }
 //POST запрос сообщения
+
 sendButton.addEventListener("click", async () => {
-  let text = message.value;
-  let p = document.createElement("p");
-  let textValue = text.value.trim();
-  if (!textValue) {
+  let text = message.value.trim();
+
+  if (!text) {
     return;
   }
-  p.textContent = `${myName}: ${text}`;
-  p.classList.add("message");
-  p.classList.add("my-message");
-  let containerMessages = document.querySelector(".chat-box");
-  containerMessages.appendChild(p);
-  message.value = "";
 
   let newMessage = {
     name: myName,
     text: text,
   };
-  await fetch("https://6ab51b3524ee9d3caa1c2f57.mockapi.io/api/WMF/messages", {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify(newMessage),
-  });
-  message.value = "";
+
+  try {
+    let response = await fetch(
+      "https://6ab51b3524ee9d3caa1c2f57.mockapi.io/api/WMF/messages",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMessage),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`Ошибка сервера: ${response.status}`);
+    }
+
+    message.value = "";
+    await loadMessages();
+  } catch (error) {
+    console.error("Не удалось отправить сообщение:", error);
+  }
 });
+
 //POST запрос сообщения - конец
 
 //GET запрос сообщения
